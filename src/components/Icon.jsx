@@ -1,10 +1,9 @@
-// components/Icon.jsx
 import React from 'react';
-import { FaTimes, FaHeart, FaSun, FaCloud } from 'react-icons/fa'; // Importa los iconos que necesites
+import { FaTimes, FaHeart, FaSun, FaCloud } from 'react-icons/fa'; 
 
 const Icon = ({ name, size, color, ...props }) => {
-  const iconSize = size === 'sm' ? '1em' : size === 'md' ? '1.5em' : '2em'; // Define tamaños base
-  const iconColor = color || 'currentColor'; // Usa el color proporcionado o el color de texto
+  const iconSize = size === 'sm' ? '1em' : size === 'md' ? '1.5em' : '2em'; 
+  const iconColor = color || 'currentColor'; 
 
   switch (name) {
     case 'close':
@@ -15,9 +14,9 @@ const Icon = ({ name, size, color, ...props }) => {
       return <FaSun size={iconSize} color={iconColor} {...props} />;
     case 'cloud':
       return <FaCloud size={iconSize} color={iconColor} {...props} />;
-    // Agrega más casos para otros iconos que necesites
+  
     default:
-      return null; // O podrías devolver un icono por defecto o un mensaje de error
+      return null; 
   }
 };
 

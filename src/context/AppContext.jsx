@@ -1,4 +1,3 @@
-// context/AppContext.js
 import React, { useState, createContext } from 'react';
 
 export const AppContext = createContext();
@@ -10,6 +9,7 @@ export const AppProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [weatherResults, setWeatherResults] = useState(null);
   const [weatherHistory, setWeatherHistory] = useState([]);
+  const [isAuthModalVisible, setIsAuthModalVisible] = useState(false); 
 
   const updateGlobalState = (newValue) => {
     setGlobalState(newValue);
@@ -28,8 +28,10 @@ export const AppProvider = ({ children }) => {
         setFavorites,
         weatherResults,
         setWeatherResults,
-        weatherHistory, 
+        weatherHistory,
         setWeatherHistory,
+        isAuthModalVisible, 
+        setIsAuthModalVisible, 
       }}
     >
       {children}

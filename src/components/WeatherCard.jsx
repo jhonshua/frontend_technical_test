@@ -1,19 +1,66 @@
-// components/WeatherCard.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import backgroundImage from '../assets/background.jpg';
+import background_noche from '../assets/background_noche.png';
+import moment from 'moment-timezone';
 
 function WeatherCard({ weather, onClose }) {
+  const isDay = weather?.current?.is_day === 1;
+
+  
+  const dayTextStyle = {
+    color: "#5f5c5c",
+    textShadow: "1px 1px 2px rgb(255, 255, 255)",
+    textStroke: "1px white",
+  };
+
+  
+  const nightTextStyle = {
+    color: "#ffffff",
+    textShadow: "1px 1px 2px rgb(2, 2, 2)",
+    textStroke: "1px white",
+  };
+
+ 
+  const textStyle = isDay ? dayTextStyle : nightTextStyle;
+
+  const [localTime, setLocalTime] = useState('');
+
+  useEffect(() => {
+    if (weather && weather.location && weather.location.tz_id) {
+      const interval = setInterval(() => {
+        const formattedTime = moment().tz(weather.location.tz_id).format('HH:mm:ss');
+        setLocalTime(formattedTime);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [weather?.location?.tz_id]);
+
   return (
-    <div className="p-4 bg-white bg-opacity-80 rounded-md shadow-md mb-4 relative">
-      <h3 className="text-xl font-semibold mb-2">{weather.location.name}, {weather.location.country}</h3>
-      <p className="text-gray-600 mb-2">
-        Temperature: {weather.current.temp_c}°C (Feels like: {weather.current.feelslike_c}°C)
+    <div
+      className="bg-white rounded-md shadow-md p-4 relative"
+      style={{
+        backgroundImage: `url(${isDay ? backgroundImage : background_noche})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        color: 'white', 
+      }}
+    >
+      <h3 className="text-xl font-semibold mb-2" style={textStyle}>
+        {weather.location.name}, {weather.location.country}
+      </h3>
+      <p className="mb-2" style={textStyle}>
+        Hora local: {localTime}
       </p>
-      <p className="text-gray-600 mb-2">
-        Weather: {weather.current.condition.text}
+      <p className="mb-2" style={textStyle}>
+        Temperatura: {weather.current.temp_c}°C (sensacion de : {weather.current.feelslike_c}°C)
+      </p>
+      <p className="mb-2" style={textStyle}>
+        Clima: {weather.current.condition.text}
       </p>
       <img src={`https:${weather.current.condition.icon}`} alt="Weather Icon" />
-      <p className="text-gray-600">
-        Humidity: {weather.current.humidity}%
+      <p style={textStyle}>
+        Humedad: {weather.current.humidity}%
       </p>
       <button
         onClick={onClose}

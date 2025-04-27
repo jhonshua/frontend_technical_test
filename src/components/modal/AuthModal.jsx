@@ -5,6 +5,7 @@ import { loginUser } from '../../services/loginService';
 import { registerUser } from '../../services/registerService';
 import Icon from '../Icon';
 import { toast } from 'react-toastify';
+import { getAllFavorites } from '../../services/favoriteServicio';
 import { ToastContainer } from 'react-toastify';
 
 
@@ -14,7 +15,7 @@ function AuthModal({ isOpen, onClose }) {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
-  const { setIsLoggedIn, setUserData } = useContext(AppContext);
+  const { setIsLoggedIn, setUserData, setFavorites } = useContext(AppContext);
 
   const handleToggleAuthMode = () => {
     setIsLogin(!isLogin);
@@ -33,9 +34,16 @@ function AuthModal({ isOpen, onClose }) {
         username: userDataFromApi.username,
       });
       localStorage.setItem('authToken', userDataFromApi.token);
+      try {
+        const favoritesData = await getAllFavorites(userDataFromApi.token);
+        setFavorites(favoritesData);
+      } catch (error) {
+        console.error('Error al cargar los favoritos:', error);
+        toast.error(`Error al cargar los favoritos: ${error.message}`);
+      }
+
       onClose();
       toast.success('Inicio de sesión exitoso!');
-      // navigate('/dashboard');
     } catch (err) {
       setError(err.message);
       toast.error(`Error al iniciar sesión: ${err.message}`);

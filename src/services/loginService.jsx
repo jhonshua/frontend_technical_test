@@ -12,7 +12,7 @@ export const loginUser = async (email, password) => {
     const data = await response.json();
 
     if (response.ok) {
-      return data; // Devuelve los datos del usuario (incluyendo token, userId, username)
+      return data; 
     } else {
       throw new Error(data.message || 'Error al iniciar sesión');
     }

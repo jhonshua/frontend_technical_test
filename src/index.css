@@ -3,7 +3,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(63, 62, 62, 0.267); 
+  background-color: rgba(204, 198, 198, 0.753); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,18 +11,13 @@
 }
 
 .modal-overlay.transparent-white {
-  background-color: rgb(255, 255, 255); 
+  background-color: rgb(223, 214, 214); 
 }
 
 
 @media (max-width: 640px) { 
   .sidebar-left {
     display: none !important; 
-  }
-
-  .modal-overlay {
-    background-color: rgba(99, 97, 97, 0.329); 
-    width:46vh !important;
   }
 
 }
@@ -33,38 +28,4 @@
     display: flex !important;
   }
 
-  .modal-overlay {
-    background-color: rgba(99, 97, 97, 0.329); 
-    width:46vh !important;
-  }
-
-}
-
-@media (width: 1280px) and (height: 800px) {
-  .modal-overlay {
-    background-color: rgba(61, 61, 60, 0.219);
-    width: 1280px !important; 
-   
-  }
-}
-
-@media (width: 1024px) and (height: 600px) {
-  .modal-overlay {
-    background-color: rgba(95, 96, 97, 0.5); 
-    width: 1024px !important;
-  }
-}
-
-@media (width: 1024px) and (height: 1366px) {
-  .modal-overlay {
-    background-color: rgba(70, 130, 180, 0.5); 
-    width: 1024px !important; 
-  }
-}
-
-@media (min-width: 1920px) {
-  .modal-overlay {
-   background-color: rgba(82, 80, 80, 0.267); 
-   width:1920px !important;
-  }
 }

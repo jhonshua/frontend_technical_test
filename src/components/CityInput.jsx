@@ -1,4 +1,3 @@
-// components/CityInput.jsx
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { getWeather } from '../services/weatherService';
@@ -11,16 +10,20 @@ function CityInput() {
     setCity(event.target.value);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleClick();
+    }
+  };
+
   const handleClick = async () => {
     if (city.trim() !== '') {
       try {
         const data = await getWeather(city);
-        // Añade el nuevo resultado al historial
         setWeatherHistory(prevHistory => [...prevHistory, data]);
         setCity('');
       } catch (error) {
         console.error('Error al buscar el clima:', error);
-        // Manejar el error visualmente si es necesario
       }
     }
   };
@@ -29,16 +32,17 @@ function CityInput() {
     <div className="flex items-center">
       <input
         type="text"
-        placeholder="Enter city"
+        placeholder="Ingresa tu ciudad"
         value={city}
         onChange={handleChange}
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        onKeyDown={handleKeyDown} 
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white" 
       />
       <button
         onClick={handleClick}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2 focus:outline-none focus:shadow-outline"
       >
-        Search
+        Busqueda
       </button>
     </div>
   );
