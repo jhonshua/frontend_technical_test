@@ -14,6 +14,11 @@
   background-color: rgb(223, 214, 214); 
 }
 
+.modal-add-favorite-overlay {
+  background-color: rgba(99, 99, 99, 0.637); /* Un fondo negro más oscuro */
+}
+
+
 
 @media (max-width: 640px) { 
   .sidebar-left {

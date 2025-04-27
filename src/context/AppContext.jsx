@@ -9,11 +9,13 @@ export const AppProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [weatherResults, setWeatherResults] = useState(null);
   const [weatherHistory, setWeatherHistory] = useState([]);
-  const [isAuthModalVisible, setIsAuthModalVisible] = useState(false); 
+  const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
+  const [isAddFavoriteModalVisible, setIsAddFavoriteModalVisible] = useState(false);
 
   const updateGlobalState = (newValue) => {
     setGlobalState(newValue);
   };
+
 
   return (
     <AppContext.Provider
@@ -30,8 +32,10 @@ export const AppProvider = ({ children }) => {
         setWeatherResults,
         weatherHistory,
         setWeatherHistory,
-        isAuthModalVisible, 
-        setIsAuthModalVisible, 
+        isAuthModalVisible,
+        setIsAuthModalVisible,
+        isAddFavoriteModalVisible, 
+        setIsAddFavoriteModalVisible,
       }}
     >
       {children}

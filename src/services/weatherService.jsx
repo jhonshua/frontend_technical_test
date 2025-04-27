@@ -1,18 +1,18 @@
-// services/weatherService.jsx
+const API_BASE_URL = 'http://localhost:3000';
 
 export const getWeather = async (city) => {
-    try {
-      const response = await fetch(`http://localhost:3000/weather?city=${city}`);
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || `Error al obtener el clima para ${city}`);
-      }
-  
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(`Error al obtener el clima para ${city}:`, error);
-      throw error;
+  try {
+    const response = await fetch(`${API_BASE_URL}/weather?city=${city}`);
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || `Error al obtener el clima para ${city}`);
     }
-  };
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error al obtener el clima para ${city}:`, error);
+    throw error;
+  }
+};

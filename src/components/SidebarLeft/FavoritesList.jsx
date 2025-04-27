@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { FiHome, FiTrash2, FiPlus } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import { removeCityFromFavorites } from '../../services/favoriteServicio';
-import { getWeather } from '../../services/weatherService'; 
+import { getWeather } from '../../services/weatherService';
 import { AppContext } from '../../context/AppContext';
 
-function FavoritesList({ cities, onAddCity }) {
-  const { userData, setFavorites, weatherHistory, setWeatherHistory } = useContext(AppContext); 
+function FavoritesList({ cities }) {
+  const { userData, setFavorites, weatherHistory, setWeatherHistory, setIsAddFavoriteModalVisible } = useContext(AppContext);
 
   const handleRemove = async (cityToRemove) => {
     try {
@@ -35,6 +35,10 @@ function FavoritesList({ cities, onAddCity }) {
     }
   };
 
+  const handleAddButtonClick = () => {
+    setIsAddFavoriteModalVisible(true); // Cambia el estado global para abrir el modal
+  };
+
   return (
     <div className="mb-4">
       <h2 className="text-lg font-semibold mb-2">Mi Favoritos</h2>
@@ -45,7 +49,7 @@ function FavoritesList({ cities, onAddCity }) {
               <FiHome className="w-4 h-4 mr-2 text-gray-500" />
               <span
                 className="cursor-pointer hover:underline"
-                onClick={() => handleCityClick(city)} 
+                onClick={() => handleCityClick(city)}
               >
                 {city}
               </span>
@@ -63,7 +67,7 @@ function FavoritesList({ cities, onAddCity }) {
       </ul>
 
       <button
-        onClick={onAddCity}
+        onClick={handleAddButtonClick}
         className="mt-4 bg-white text-blue-500 py-2 px-4 rounded-md font-semibold flex items-center justify-center w-full hover:bg-blue-50 transition-colors"
       >
         <FiPlus className="w-4 h-4 mr-2" />

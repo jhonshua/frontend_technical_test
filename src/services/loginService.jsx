@@ -1,7 +1,8 @@
-// services/loginService.jsx
+const API_BASE_URL = 'http://localhost:3000';
+
 export const loginUser = async (email, password) => {
   try {
-    const response = await fetch('http://localhost:3000/auth/login', {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -12,7 +13,7 @@ export const loginUser = async (email, password) => {
     const data = await response.json();
 
     if (response.ok) {
-      return data; 
+      return data;
     } else {
       throw new Error(data.message || 'Error al iniciar sesión');
     }

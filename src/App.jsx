@@ -5,10 +5,11 @@ import WeatherCardList from "./components/WeatherCardList";
 import logo from "../src/assets/logo.png";
 import cielo from "../src/assets/cielo.jpg";
 import AuthModal from "./components/modal/AuthModal";
+import ModalAddFavorite from "./components/modal/ModalAddFavorite";
 import { AppContext } from "./context/AppContext";
 
 function App() {
-  const { isAuthModalVisible, setIsAuthModalVisible, isLogin } =
+  const { isAuthModalVisible, setIsAuthModalVisible, isLogin, isAddFavoriteModalVisible } =
     useContext(AppContext);
 
   const closeAuthModal = () => {
@@ -50,6 +51,9 @@ function App() {
           onClose={closeAuthModal}
           isLogin={isLogin}
         />
+      )}
+      {isAddFavoriteModalVisible && (
+        <ModalAddFavorite /> 
       )}
     </div>
   );
