@@ -56,7 +56,7 @@ function SidebarLeft() {
       {isMobile && (
         <button
           onClick={toggleSidebarMobile}
-          className="fixed top-4 right-4 bg-blue-500 text-white p-2 rounded-md z-50 border border-black" // Cambiado 'left-4' a 'right-4' y añadido 'border border-black'
+          className="fixed top-4 right-4 bg-blue-500 text-white p-2 rounded-md z-50 border border-black" 
         >
           <Icon name="menu" size="md" />
         </button>
