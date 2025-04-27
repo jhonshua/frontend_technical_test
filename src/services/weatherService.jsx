@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'https://backend-technical-test-fcn1.onrender.com';
 
 export const getWeather = async (city) => {
   try {
